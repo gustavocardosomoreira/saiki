@@ -1,77 +1,77 @@
-## Plan: LLM-Powered Document Structure Analyzer
+# Plan: LLM-Powered Document Structure Analyzer (GitHub-Native)
 
-**1. Goal:**
+## Goal
+Develop an application that analyzes multiple documents to identify their common textual structure, leveraging LLMs. The application will be developed and run entirely within the GitHub ecosystem.
 
-*   Develop an application that can analyze a collection of documents, identify their common textual structure, and highlight differences from a provided template file.
+## Key Features
+- **Document Ingestion:** Ability to ingest multiple documents from the repository.
+- **Structure Extraction:** Use an LLM to extract the textual structure from each document.
+- **Common Structure Identification:** Identify the common structure across all documents.
+- **Template Comparison:** Compare the extracted structure with a provided template file.
+- **GitHub Integration:** Seamless integration with GitHub for development, execution, and deployment.
 
-**2. Key Features:**
+## Development Environment
+- **GitHub Codespaces:** Use GitHub Codespaces for the development environment. This eliminates the need for local setup and provides a consistent environment for all contributors.
 
-*   **Document Ingestion:**
-    *   Support for various document formats (e.g., `.txt`, `.pdf`, `.docx`).
-    *   Ability to load multiple documents at once.
-*   **Text Extraction:**
-    *   Extraction of text content from documents, handling potential formatting variations.
-*   **Structure Analysis:**
-    *   Utilize an LLM to identify common structural elements across documents (e.g., headings, paragraphs, lists, tables).
-    *   Develop a representation of the common structure (e.g., a hierarchical structure or a set of rules).
-*   **Template Comparison:**
-    *   Compare the identified common structure against a provided template file.
-    *   Highlight differences and deviations from the template.
-*   **Output/Reporting:**
-    *   Generate a report summarizing the common structure.
-    *   Highlight differences from the template.
-    *   Provide a visualization of the document structure (optional).
+## Technologies
+- **Python:** Primary programming language.
+- **LLM Library:** `transformers` or similar for LLM interaction.
+- **GitHub Actions:** For automating tasks such as testing, linting, and deployment.
+- **GitHub Pages (Optional):** If a UI is needed, GitHub Pages can be used to host it.
 
-**3. Technical Approach:**
+## Development Steps
 
-*   **Language Model:**
-    *   Utilize a pre-trained LLM (e.g., GPT-3.5, Llama2) for structure analysis.
-    *   Fine-tune the LLM (optional) on a dataset of documents with known structures.
-*   **Document Processing Libraries:**
-    *   Use libraries like `PyPDF2`, `python-docx`, and `textract` for document parsing and text extraction.
-*   **Data Structures:**
-    *   Represent the document structure using a suitable data structure (e.g., a tree, a graph, or a custom class).
-*   **Comparison Algorithm:**
-    *   Develop an algorithm to compare the identified structure with the template, considering potential variations and inconsistencies.
-*   **User Interface (Optional):**
-    *   Create a simple UI (e.g., using Streamlit or Flask) for easy document uploading and result visualization.
+1.  **Project Setup:**
+    -   Create a new branch for development.
+    -   Set up the basic project structure in the repository.
+    -   Create a `requirements.txt` file with the necessary dependencies.
 
-**4. Development Steps:**
+2.  **Document Ingestion:**
+    -   Implement functionality to read documents from the repository.
+    -   Support various document formats (e.g., `.txt`, `.md`).
 
-1.  **Setup:**
-    *   Create a new Python project.
-    *   Install necessary libraries (`PyPDF2`, `python-docx`, `textract`, `transformers`, etc.).
-    *   Set up API access to the chosen LLM.
-2.  **Document Ingestion and Text Extraction:**
-    *   Implement functions to load documents from various formats.
-    *   Extract text content from the documents.
-3.  **Structure Analysis:**
-    *   Develop a function to send the document text to the LLM and prompt it to identify structural elements.
-    *   Parse the LLM's output and create a structured representation of the document.
-4.  **Template Comparison:**
-    *   Load the template file and extract its structure.
-    *   Compare the document structure with the template structure.
-    *   Identify and highlight differences.
-5.  **Output/Reporting:**
-    *   Generate a report summarizing the common structure and differences from the template.
-    *   (Optional) Create a visualization of the document structure.
-6.  **User Interface (Optional):**
-    *   Develop a UI for easy document uploading and result visualization.
-7.  **Testing and Refinement:**
-    *   Test the application with a variety of documents.
-    *   Refine the structure analysis and comparison algorithms based on the test results.
+3.  **Structure Extraction:**
+    -   Implement LLM-based structure extraction from individual documents.
+    -   Fine-tune the LLM if necessary for better accuracy.
 
-**5. Tools and Technologies:**
+4.  **Common Structure Identification:**
+    -   Develop an algorithm to identify the common structure across multiple documents.
+    -   Consider using techniques like sequence alignment or graph matching.
 
-*   Python
-*   LLM (GPT-3.5, Llama2, etc.)
-*   `PyPDF2`, `python-docx`, `textract`
-*   `transformers` (for LLM interaction)
-*   Streamlit/Flask (optional, for UI)
+5.  **Template Comparison:**
+    -   Implement functionality to compare the extracted structure with the provided template file.
+    -   Highlight differences and similarities.
 
-**6. Future Enhancements:**
+6.  **Testing and Validation:**
+    -   Write unit tests to ensure the correctness of the implemented functionality.
+    -   Use GitHub Actions to automate testing on each commit.
 
-*   Support for more document formats.
-*   More sophisticated structure analysis algorithms.
-*   Interactive visualization of document structures.
-*   Ability to automatically correct deviations from the template.
+7.  **GitHub Actions Integration:**
+    -   Set up GitHub Actions for:
+        -   Linting (e.g., using `flake8`).
+        -   Testing.
+        -   Deployment (if using GitHub Pages).
+
+8.  **User Interface (Optional):**
+    -   If a user interface is needed, develop a simple UI using a framework like Flask or Streamlit.
+    -   Host the UI on GitHub Pages.
+
+9.  **Documentation:**
+    -   Write clear and concise documentation for the application.
+    -   Include instructions on how to use the application and how to contribute to the project.
+
+10. **Continuous Integration and Continuous Deployment (CI/CD):**
+    -   Set up CI/CD pipelines using GitHub Actions to automate the build, test, and deployment processes.
+
+## Branching Strategy
+-   `main`: Stable, production-ready code.
+-   `develop`: Integration branch for new features.
+-   Feature branches: For individual feature development, branched from `develop`.
+
+## Commit Message Guidelines
+-   Use clear and descriptive commit messages.
+-   Follow a consistent commit message format (e.g., Conventional Commits).
+
+## Collaboration
+-   Use pull requests for code review and collaboration.
+-   Assign reviewers to pull requests to ensure code quality.
