@@ -1,5 +1,41 @@
 from typing import List, Dict
 from transformers import pipeline
+from github import Github
+
+def read_documents(owner: str, repo: str, branch: str, data_dir: str = "data/") -> List[Dict[str, str]]:
+    """
+    Reads documents from the specified directory in the repository.
+
+    Args:
+        owner: Repository owner (username or organization).
+        repo: Repository name.
+        branch: Branch to read documents from.
+        data_dir: Directory containing the documents.
+
+    Returns:
+        A list of dictionaries, where each dictionary contains the document's
+        filename and content.
+    """
+    documents = []
+    try:
+        # Get the repository using PyGithub
+        g = Github()
+        repository = g.get_repo(f"{owner}/{repo}")
+
+        # Get the contents of the data directory
+        contents = repository.get_contents(data_dir, ref=branch)
+
+        for content_file in contents:
+            if content_file.name.endswith(".txt") or content_file.name.endswith(".md"):
+                try:
+                    # Get the file content
+                    file_content = content_file.decoded_content.decode()
+                    documents.append({"filename": content_file.name, "content": file_content})
+                except Exception as e:
+                    print(f"Error reading file {content_file.name}: {e}")
+    except Exception as e:
+        print(f"Error reading directory {data_dir}: {e}")
+    return documents
 
 def extract_structure(document_content: str) -> List[Dict[str, str]]:
     """
